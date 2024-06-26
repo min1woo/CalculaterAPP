@@ -9,9 +9,9 @@ import UIKit
 import SnapKit
 
 class ViewController: UIViewController {
+    let label = UILabel()
+    var number: Int = 0 // 라벨에 들어갈 프로퍼티
     
-    var number: Int = 12345 // 라벨에 들어갈 프로퍼티
-   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +22,6 @@ class ViewController: UIViewController {
         view.backgroundColor = .black // 뷰의 백그라운드 색상은 검정색
         
         // 수식이 들어갈 라벨
-        let label = UILabel()
         label.text = "\(number)"
         label.textColor = .white
         label.font = .boldSystemFont(ofSize: 60)
@@ -65,6 +64,7 @@ class ViewController: UIViewController {
         button7.frame.size.width = 80
         button7.layer.cornerRadius = 40
         stackView1.addArrangedSubview(button7)
+        button7.addTarget(self, action: #selector(button7Tapped), for: .touchDown)
         
         // 숫자 8 버튼
         let button8 = UIButton()
@@ -75,6 +75,7 @@ class ViewController: UIViewController {
         button8.frame.size.width = 80
         button8.layer.cornerRadius = 40
         stackView1.addArrangedSubview(button8)
+        button8.addTarget(self, action: #selector(button8Tapped), for: .touchDown)
         
         // 숫자 9 버튼
         let button9 = UIButton()
@@ -85,6 +86,7 @@ class ViewController: UIViewController {
         button9.frame.size.width = 80
         button9.layer.cornerRadius = 40
         stackView1.addArrangedSubview(button9)
+        button9.addTarget(self, action: #selector(button9Tapped), for: .touchDown)
         
         // 연산자 + 버튼
         let plusButton = UIButton()
@@ -95,6 +97,7 @@ class ViewController: UIViewController {
         plusButton.frame.size.width = 80
         plusButton.layer.cornerRadius = 40
         stackView1.addArrangedSubview(plusButton)
+        plusButton.addTarget(self, action: #selector(plusButtonTapped), for: .touchDown)
         // 여기까지 스택1에 들어감
         
         // 숫자 4버튼
@@ -106,6 +109,7 @@ class ViewController: UIViewController {
         button4.frame.size.width = 80
         button4.layer.cornerRadius = 40
         stackView2.addArrangedSubview(button4)
+        button4.addTarget(self, action: #selector(button4Tapped), for: .touchDown)
         
         // 숫자 5 버튼
         let button5 = UIButton()
@@ -116,6 +120,7 @@ class ViewController: UIViewController {
         button5.frame.size.width = 80
         button5.layer.cornerRadius = 40
         stackView2.addArrangedSubview(button5)
+        button5.addTarget(self, action: #selector(button5Tapped), for: .touchDown)
         
         // 숫자 6 버튼
         let button6 = UIButton()
@@ -126,6 +131,7 @@ class ViewController: UIViewController {
         button6.frame.size.width = 80
         button6.layer.cornerRadius = 40
         stackView2.addArrangedSubview(button6)
+        button6.addTarget(self, action: #selector(button6Tapped), for: .touchDown)
         
         // 연산자 - 버튼
         let minusButton = UIButton()
@@ -136,6 +142,7 @@ class ViewController: UIViewController {
         minusButton.frame.size.width = 80
         minusButton.layer.cornerRadius = 40
         stackView2.addArrangedSubview(minusButton)
+        minusButton.addTarget(self, action: #selector(minusButtonTapped), for: .touchDown)
         //여기까지 스택2에 들어감
         
         // 숫자 1 버튼
@@ -147,6 +154,7 @@ class ViewController: UIViewController {
         button1.frame.size.width = 80
         button1.layer.cornerRadius = 40
         stackView3.addArrangedSubview(button1)
+        button1.addTarget(self, action: #selector(button1Tapped), for: .touchDown)
         
         // 숫자 2 버튼
         let button2 = UIButton()
@@ -157,6 +165,7 @@ class ViewController: UIViewController {
         button2.frame.size.width = 80
         button2.layer.cornerRadius = 40
         stackView3.addArrangedSubview(button2)
+        button2.addTarget(self, action: #selector(button2Tapped), for: .touchDown)
         
         // 숫자 3 버튼
         let button3 = UIButton()
@@ -167,6 +176,7 @@ class ViewController: UIViewController {
         button3.frame.size.width = 80
         button3.layer.cornerRadius = 40
         stackView3.addArrangedSubview(button3)
+        button3.addTarget(self, action: #selector(button3Tapped), for: .touchDown)
         
         // 연산자 * 버튼
         let multypleButton = UIButton()
@@ -177,6 +187,7 @@ class ViewController: UIViewController {
         multypleButton.frame.size.width = 80
         multypleButton.layer.cornerRadius = 40
         stackView3.addArrangedSubview(multypleButton)
+        multypleButton.addTarget(self, action: #selector(multypleButtonTapped), for: .touchDown)
         // 여기까지 스택3에 들어감
         
         // 리셋 버튼 (AC)
@@ -188,6 +199,7 @@ class ViewController: UIViewController {
         resetButton.frame.size.width = 80
         resetButton.layer.cornerRadius = 40
         stackView4.addArrangedSubview(resetButton)
+        resetButton.addTarget(self, action: #selector(resetButtonTapped), for: .touchDown)
         
         // 숫자 0 버튼
         let button0 = UIButton()
@@ -198,6 +210,7 @@ class ViewController: UIViewController {
         button0.frame.size.width = 80
         button0.layer.cornerRadius = 40
         stackView4.addArrangedSubview(button0)
+        button0.addTarget(self, action: #selector(button0Tapped), for: .touchDown)
         
         // 연산자 = 버튼
         let equalButton = UIButton()
@@ -210,14 +223,15 @@ class ViewController: UIViewController {
         stackView4.addArrangedSubview(equalButton)
         
         // 연산자 / 버튼
-        let diviedButton = UIButton()
-        diviedButton.setTitle("/", for: .normal)
-        diviedButton.backgroundColor = .orange
-        diviedButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
-        diviedButton.frame.size.height = 80
-        diviedButton.frame.size.width = 80
-        diviedButton.layer.cornerRadius = 40
-        stackView4.addArrangedSubview(diviedButton)
+        let divideButton = UIButton()
+        divideButton.setTitle("/", for: .normal)
+        divideButton.backgroundColor = .orange
+        divideButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
+        divideButton.frame.size.height = 80
+        divideButton.frame.size.width = 80
+        divideButton.layer.cornerRadius = 40
+        stackView4.addArrangedSubview(divideButton)
+        divideButton.addTarget(self, action: #selector(divideButtonTapped), for: .touchDown)
         // 여기까지 스택4에 들어감
         
         
@@ -263,9 +277,115 @@ class ViewController: UIViewController {
             $0.centerX.equalToSuperview()
         }
     }
+    
+    // AC버튼 액션 구현
+    @objc private func resetButtonTapped() {
+        self.number = 0
+        label.text = "\(number)"
+    }
+    
+    // 숫자 버튼 액션 구현
+    @objc
+    private func button7Tapped() {
+        if label.text == "0" {
+            label.text = "7"
+        } else {
+            label.text = label.text! + "7"
+        }
+    }
+    
+    @objc private func button8Tapped() {
+        if label.text == "0" {
+            label.text = "8"
+        } else {
+            label.text = label.text! + "8"
+        }
+    }
+    
+    
+    @objc private func button9Tapped() {
+        if label.text == "0" {
+            label.text = "9"
+        } else {
+            label.text = label.text! + "9"
+        }
+    }
+    
+    @objc private func button4Tapped() {
+        if label.text == "0" {
+            label.text = "4"
+        } else {
+            label.text = label.text! + "4"
+        }
+    }
+    
+    @objc private func button5Tapped() {
+        if label.text == "0" {
+            label.text = "5"
+        } else {
+            label.text = label.text! + "5"
+        }
+    }
+    
+    @objc private func button6Tapped() {
+        if label.text == "0" {
+            label.text = "5"
+        } else {
+            label.text = label.text! + "5"
+        }
+    }
+    
+    @objc private func button1Tapped() {
+        if label.text == "0" {
+            label.text = "1"
+        } else {
+            label.text = label.text! + "1"
+        }
+    }
+    
+    @objc private func button2Tapped() {
+        if label.text == "0" {
+            label.text = "2"
+        } else {
+            label.text = label.text! + "2"
+        }
+    }
+    @objc private func button3Tapped() {
+        if label.text == "0" {
+            label.text = "3"
+        } else {
+            label.text = label.text! + "3"
+        }
+    }
+    
+    @objc private func button0Tapped() {
+        label.text = label.text! + "0"
+    }
+    
+    // 연산자 버튼 액션 구현
+    @objc private func plusButtonTapped() {
+        label.text = label.text! + "+"
+    }
+    
+    @objc private func minusButtonTapped() {
+        label.text = label.text! + "-"
+    }
+    
+    @objc private func multypleButtonTapped() {
+        label.text = label.text! + "*"
+    }
+    
+    @objc private func divideButtonTapped() {
+        label.text = label.text! + "/"
+    }
+    
+    @objc private func equalButtonTapped() {
         
-        
-        
+    }
+    
+    
+    
+    
 }
     
    
